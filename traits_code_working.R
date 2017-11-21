@@ -8,15 +8,15 @@ library(ggfortify)
 library(pls)
 library(Hmisc)
 
-#set working directory to traits folder
+
 
 {#import the plant datafile
-plants<- read.csv('sare_plants_traits.csv')
+plants<- read.csv('data/sare_plants_traits.csv')
 head(plants)
 summary(plants)
 
 #import other plant triat files to eventually merge
-corolla<-read.csv('corolla_width_traits.csv')
+corolla<-read.csv('data/corolla_width_traits.csv')
 head(corolla)
 
 #merge corolla width data with plants file so that corolla width is represented for each plant
@@ -26,7 +26,7 @@ head(plants)
 colnames(plants)
 
 #also need to merge the color traits
-traits<-read.csv('flw_col_traits.csv')
+traits<-read.csv('data/flw_col_traits.csv')
 head(traits)
 
 plants<- merge(plants, traits)
@@ -34,19 +34,19 @@ head(plants)
 colnames(plants)
 
 #also need to merge the color traits
-nectar<-read.csv('nectar.csv')
+nectar<-read.csv('data/nectar.csv')
 head(nectar)
 
 plants<- merge(plants, nectar)
-#rid yourself on NAs
+#rid yourself of NAs
 plants<-na.omit(plants)
 summary(plants)
 head(plants)
-write.csv(plants, "plant_traits.csv")
+write.csv(plants, 'data/plant_traits.csv')
 }#creating the traits data file. *do not need to use moving forward. just use plant_traits.csv*
 
 
-plants<-read.csv("plant_traits.csv")
+plants<-read.csv('data/plant_traits.csv')
 
 head(plants)
 
