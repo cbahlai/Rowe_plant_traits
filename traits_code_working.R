@@ -285,7 +285,7 @@ model.Me<- lm(logMegachilidae~ Week_Bloom + Number_Flowers + Floral_Area + Flowe
 }#using dredging functions to determine best models and an average best model
 
 {
-  plants<-read.csv("plant_traits.csv")
+  plants<-read.csv('data/plant_traits.csv')
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants$nec_plot<-plants$nectar*plants$tot_flw
@@ -310,7 +310,7 @@ model.Me<- lm(logMegachilidae~ Week_Bloom + Number_Flowers + Floral_Area + Flowe
   head(plants_t)
   
   #import specimen dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -366,8 +366,8 @@ model.Me<- lm(logMegachilidae~ Week_Bloom + Number_Flowers + Floral_Area + Flowe
   plot(ef)
 }##PCA analysis family level does not include pollen data
 
-{# now lets to some PCA because PCA can utilize trait variables that are correlated.
-plants<-read.csv("plant_traits.csv")
+{# now lets do some PCA because PCA can utilize trait variables that are correlated.
+plants<-read.csv('data/plant_traits.csv')
 head(plants)
 plants$pol_plot<-plants$pol.unit*plants$tot_flw
 plants$nec_plot<-plants$nectar*plants$tot_flw
@@ -418,7 +418,7 @@ plants_bees$Anthidiellum<-NULL #0 total
 colnames(plants_bees)
 
 
-tot_bees<-rowSums(plants_bees[12:42])
+tot_bees<-rowSums(plants_bees[12:41])
 plants_bees_condensed<-plants_bees[tot_bees>1,] #removing interactions zeros
 colnames(plants_bees_condensed)
 
@@ -449,7 +449,7 @@ plot(ef)
 }##PCA analysis genus level but does not include any pollen data
 
 {
-  plants<-read.csv("plant_traits.csv")
+  plants<-read.csv('data/plant_traits.csv')
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants$nec_plot<-plants$nectar*plants$tot_flw
