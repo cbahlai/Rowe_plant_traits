@@ -57,8 +57,9 @@ plants$per_tar_cov<-as.numeric(plants$per_tar_cov)
 
 #create nectar per plot trait
 plants$nec_plot<-plants$nectar*plants$tot_flw
-#create a pollen per plot trait
-#now its time to look for correlations between plant trait data
+
+
+#now it's time to look for correlations between plant trait data
 
 {
   
@@ -114,7 +115,7 @@ chart.Correlation(plants_corr, histogram=TRUE, pch=19)
 
 }# plant trait correlation code
 {
-  plants<-read.csv("plant_traits.csv")
+  plants<-read.csv('data/plant_traits.csv')
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants<-na.omit(plants)
@@ -151,12 +152,12 @@ chart.Correlation(plants_corr, histogram=TRUE, pch=19)
 #Chroma and Hue are Correlated r2=-0.5
 
 
-# For this reason I removed Pollan and Hue variables from MLR
+# to avoid issues with autocorrelation, I removed Pollen and Hue variables from MLR
 
 {
 ###combine plant data with bee data
 #import the bee dataset
-specimen <- read.csv('all_bees3.csv') 
+specimen <- read.csv('data/all_bees3.csv') 
 head(specimen)
 colnames(specimen) #make sure it looks correct
 
@@ -201,35 +202,85 @@ head(plants_bees)
 
 {
 #Apidae model
-model<- lm(logApidae~ Week_Bloom + Number_Flowers + Floral_Area + Flower_Height + Corolla_Width + Hue,
+model.Ap<- lm(logApidae~ Week_Bloom + Number_Flowers + Floral_Area + Flower_Height + Corolla_Width + Hue,
                     data = plants_bees)
+  
+  summary(model.Ap)
+  #ANOVA F tests
+  modela<-aov(model.Ap)
+  summary(modela)
+  
+  #Using the dredge function to determine best model
+  library(MuMIn)
+  options(na.action = "na.fail")
+  pos.model = dredge(model.Ap)
+  best.mods = subset(pos.model, delta < 3)
+  best.mods
+  avg.mod = model.avg(best.mods)
+  summary(avg.mod) 
+  
 #Andrenidae model
-model<- lm(logAndenidae~ Week_Bloom + Number_Flowers + Floral_Area + Flower_Height + Corolla_Width + Hue,
+model.An<- lm(logAndrenidae~ Week_Bloom + Number_Flowers + Floral_Area + Flower_Height + Corolla_Width + Hue,
            data = plants_bees)
+
+  summary(model.An)
+  modela<-aov(model.An)
+  summary(modela)
+
+  #Using the dredge function to determine best model
+  pos.model = dredge(model.An)
+  best.mods = subset(pos.model, delta < 3)
+  best.mods
+  avg.mod = model.avg(best.mods)
+  summary(avg.mod)
+
+
 #Colletidae model
-model<- lm(logColletidae~ Week_Bloom + Number_Flowers + Floral_Area + Flower_Height + Corolla_Width + Hue,
+model.Co<- lm(logColletidae~ Week_Bloom + Number_Flowers + Floral_Area + Flower_Height + Corolla_Width + Hue,
            data = plants_bees)
+
+  summary(model.Co)
+  modela<-aov(model.Co)
+  summary(modela)
+
+  #Using the dredge function to determine best model
+  pos.model = dredge(model.Co)
+  best.mods = subset(pos.model, delta < 3)
+  best.mods
+  avg.mod = model.avg(best.mods)
+  summary(avg.mod)
+
+
 #Halictidae model
-model<- lm(logHalictidae~ Week_Bloom + Number_Flowers + Floral_Area + Flower_Height + Corolla_Width + Hue,
+model.Ha<- lm(logHalictidae~ Week_Bloom + Number_Flowers + Floral_Area + Flower_Height + Corolla_Width + Hue,
            data = plants_bees)
+
+  summary(model.Ha)
+  modela<-aov(model.Ha)
+  summary(modela)
+
+  #Using the dredge function to determine best model
+  pos.model = dredge(model.Ha)
+  best.mods = subset(pos.model, delta < 3)
+  best.mods
+  avg.mod = model.avg(best.mods)
+  summary(avg.mod)
+
 #Megachilidae model
-model<- lm(logMegachilidae~ Week_Bloom + Number_Flowers + Floral_Area + Flower_Height + Corolla_Width + Hue,
+model.Me<- lm(logMegachilidae~ Week_Bloom + Number_Flowers + Floral_Area + Flower_Height + Corolla_Width + Hue,
            data = plants_bees)
 
+  summary(model.Me)
+  modela<-aov(model.Me)
+  summary(modela)
 
-summary(model)
-#ANOVA F tests
-modela<-aov(model)
-summary(modela)
+  #Using the dredge function to determine best model
+  pos.model = dredge(model.Me)
+  best.mods = subset(pos.model, delta < 3)
+  best.mods
+  avg.mod = model.avg(best.mods)
+  summary(avg.mod)
 
-#Using the dredge function to determine best model
-library(MuMIn)
-options(na.action = "na.fail")
-pos.model = dredge(model)
-best.mods = subset(pos.model, delta < 3)
-best.mods
-avg.mod = model.avg(best.mods)
-summary(avg.mod)
 
 }#using dredging functions to determine best models and an average best model
 
