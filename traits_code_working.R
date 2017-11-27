@@ -395,7 +395,7 @@ plants_t #this the plants trait file
 head(plants_t)
 
 #import specimen dataset
-specimen <- read.csv('all_bees3.csv') 
+specimen <- read.csv('data/all_bees3.csv') 
 head(specimen)
 colnames(specimen) #make sure it looks correct
 
@@ -478,7 +478,7 @@ plot(ef)
   head(plants_t)
   
   #import specimen dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -584,7 +584,6 @@ plot(ef)
   colnames(specimen) #make sure it looks correct
   
   #this creates the specimen matrix with site, year, bloom period attached
-  library(ddply)
   bee_genus<-dcast(specimen,plant_sp+site ~family, length)   
   head(bee_genus) 
   colnames(bee_genus)
@@ -720,7 +719,6 @@ library(ggplot2)
   
   #Bumblebees only
   #this code will allow us to look at bumblebees specifically
-  library(ddply)
   bee_genus<-dcast(specimen,plant_sp+site ~genus, length)   
   head(bee_genus) 
   colnames(bee_genus)
@@ -743,13 +741,11 @@ library(ggplot2)
   #Non-Bombus Apidae
   ###need to create a column that includes Apidae minus Bombus for this analysis
   #family first
-  library(ddply)
   bee_family<-dcast(specimen,plant_sp+site ~family, length)   
   head(bee_family) 
   colnames(bee_family)
   
   #genus second
-  library(ddply)
   bee_genus<-dcast(specimen,plant_sp+site ~genus, length)   
   head(bee_genus) 
   colnames(bee_genus)
@@ -778,7 +774,7 @@ library(ggplot2)
   anova(non_Bombus_apidae, test="F")
   vif(non_Bombus_apidae)
   
-}#Multiple linear regressions to see trait if traits explain vistation
+}#Multiple linear regressions to see if traits explain visitation
 
 
 
