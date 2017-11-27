@@ -63,7 +63,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
 
 {
   
-  plants<-read.csv("plant_traits.csv")
+  plants<-read.csv("data/plant_traits.csv")
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants<-na.omit(plants)
@@ -284,7 +284,8 @@ model.Me<- lm(logMegachilidae~ Week_Bloom + Number_Flowers + Floral_Area + Flowe
 
 }#using dredging functions to determine best models and an average best model
 
-{
+{# now lets do some PCA because PCA can utilize trait variables that are correlated.
+  #Multivariate analysis at the family level- pollen excluded from analysis
   plants<-read.csv('data/plant_traits.csv')
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
@@ -366,7 +367,9 @@ model.Me<- lm(logMegachilidae~ Week_Bloom + Number_Flowers + Floral_Area + Flowe
   plot(ef)
 }##PCA analysis family level does not include pollen data
 
-{# now lets do some PCA because PCA can utilize trait variables that are correlated.
+{
+  
+  #Multivariate analysis at the genus level- pollen excluded from analysis
 plants<-read.csv('data/plant_traits.csv')
 head(plants)
 plants$pol_plot<-plants$pol.unit*plants$tot_flw
@@ -449,6 +452,7 @@ plot(ef)
 }##PCA analysis genus level but does not include any pollen data
 
 {
+  #Multivariate analysis at the genus level- pollen included in this analysis
   plants<-read.csv('data/plant_traits.csv')
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
@@ -531,12 +535,12 @@ plot(ef)
  }##PCA analysis does include pollen data
 
 {
-  plants<- read.csv('sare_plants_traits2.csv')
+  plants<- read.csv('data/sare_plants_traits2.csv')
   head(plants)
   summary(plants) 
   
-  #import other plant triat files to eventually merge
-  corolla<-read.csv('corolla_width_traits.csv')
+  #import other plant trait files to eventually merge
+  corolla<-read.csv('data/corolla_width_traits.csv')
   head(corolla)
   
   #merge corolla width data with plants file so that corolla width is represented for each plant
@@ -546,7 +550,7 @@ plot(ef)
   colnames(plants)
   
   #also need to merge the color traits
-  traits<-read.csv('flw_col_traits.csv')
+  traits<-read.csv('data/flw_col_traits.csv')
   head(traits)
   
   plants<- merge(plants, traits)
@@ -555,7 +559,7 @@ plot(ef)
   
   plants<-na.omit(plants) 
   
-  #restructure this data to merge with bee dataq
+  #restructure this data to merge with bee data
   library(plyr)
   plants_mlr<- ddply(plants, c("site", "plant_sp"), summarise,
                      Week_Bloom = mean(week_num),
@@ -575,7 +579,7 @@ plot(ef)
   colnames(plants_mlr)
   
   #bring in bee data
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -638,6 +642,7 @@ plot(ef)
   hist(plants_bees$logsumcol)
   
   #MULTIPLE LINEAR REGRESSION ANALYSIS
+  library(car)
   #honeybees
   honeybees<- lm ( loghoneybees ~ Week_Bloom+ Floral_Area +Number_Flowers + Flower_Height + Corolla_Width + Hue, data=plants_bees)
   summary(honeybees)
@@ -668,7 +673,7 @@ library(ggplot2)
   summary(syrphids)
   anova(syrphids, test="F")
   #plot(honey_bees)
-  vif(syrphids)
+  vif(syrphids) #should be the same as for honey bees, same predictors used
   
   #wild bees
   wildbees<- lm ( logsumcol ~ Week_Bloom+ Floral_Area +Number_Flowers + Flower_Height + Corolla_Width + Hue, data=plants_bees)
