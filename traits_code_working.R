@@ -7,7 +7,7 @@ library(plyr)
 library(ggfortify)
 library(pls)
 library(Hmisc)
-#test3
+
 #test
 
 {#import the plant datafile
