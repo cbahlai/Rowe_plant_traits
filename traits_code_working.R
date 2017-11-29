@@ -8,7 +8,7 @@ library(ggfortify)
 library(pls)
 library(Hmisc)
 
-#test
+#test 2.0
 
 {#import the plant datafile
 plants<- read.csv('data/sare_plants_traits.csv')
