@@ -65,7 +65,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
 
 {
   
-  plants<-read.csv("plant_traits.csv")
+  plants<-read.csv("data/plant_traits.csv")
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants<-na.omit(plants)
@@ -159,7 +159,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
 {
   ###combine plant data with bee data
   #import the bee dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -287,7 +287,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
 }#using dredging functions to determine best models and an average best model
 
 {
-  plants<-read.csv("plant_traits.csv")
+  plants<-read.csv("data/plant_traits.csv")
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants$nec_plot<-plants$nectar*plants$tot_flw
@@ -312,7 +312,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
   head(plants_t)
   
   #import specimen dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -374,7 +374,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
 }##PCA analysis Family level does include pollen data
 
 {# now lets do some PCA because PCA can utilize trait variables that are correlated.
-  plants<-read.csv("plant_traits.csv")
+  plants<-read.csv("data/plant_traits.csv")
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants$nec_plot<-plants$nectar*plants$tot_flw
@@ -399,7 +399,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
   head(plants_t)
   
   #import specimen dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -460,7 +460,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
 }##PCA analysis genus level but does  pollen data
 
 {
-  plants<-read.csv('plant_traits.csv')
+  plants<-read.csv('data/plant_traits.csv')
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants$nec_plot<-plants$nectar*plants$tot_flw
@@ -486,7 +486,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
   head(plants_t)
   
   #import specimen dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -544,7 +544,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
 
 {
   
-  plants<-read.csv("plant_traits.csv")
+  plants<-read.csv("data/plant_traits.csv")
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants<-na.omit(plants)
@@ -571,7 +571,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
   
   ###combine plant data with bee data
   #import the bee dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -616,7 +616,7 @@ plants$nec_plot<-plants$nectar*plants$tot_flw
   head(plants_bees)
   
   
-  plants2<- read.csv('sare_plants_traits2.csv')
+  plants2<- read.csv('data/sare_plants_traits2.csv')
   head(plants2)
   
   #reshape to only have poll data combined with plant data
@@ -1485,7 +1485,7 @@ chart.Correlation(bee_plant, histogram=TRUE, pch=19)
 }#matrix of bee and plant traits that were found to be significant
 
 {#import specimen dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -1542,7 +1542,7 @@ chart.Correlation(bee_plant, histogram=TRUE, pch=19)
   adonis(all_plants ~all_bees$family, method="bray",permutations=100)
 }#ALL SITES NMDS
 {#import specimen dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -1713,7 +1713,7 @@ chart.Correlation(bee_plant, histogram=TRUE, pch=19)
   
 }#SITE SPECIFIC NMDS PLOTS
 {
-  plants<-read.csv("plant_traits.csv")
+  plants<-read.csv("data/plant_traits.csv")
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants$nec_plot<-plants$nectar*plants$tot_flw
@@ -1738,7 +1738,7 @@ chart.Correlation(bee_plant, histogram=TRUE, pch=19)
   head(plants_t)
   
   #import specimen dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   
   colnames(specimen) #make sure it looks correct
@@ -1825,7 +1825,7 @@ chart.Correlation(bee_plant, histogram=TRUE, pch=19)
 }##PCA all sites combined
 {
   #import specimen dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('dat/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -1837,7 +1837,7 @@ chart.Correlation(bee_plant, histogram=TRUE, pch=19)
   
   
   #import plant data
-  plants<-read.csv("plant_traits.csv")
+  plants<-read.csv("data/plant_traits.csv")
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants$nec_plot<-plants$nectar*plants$tot_flw
@@ -2005,7 +2005,7 @@ chart.Correlation(bee_plant, histogram=TRUE, pch=19)
 }#SITE SPECIFIC PCA / ADONIS
 {
   ##import specimen dataset
-  specimen <- read.csv('all_bees3.csv') 
+  specimen <- read.csv('data/all_bees3.csv') 
   head(specimen)
   colnames(specimen) #make sure it looks correct
   
@@ -2017,7 +2017,7 @@ chart.Correlation(bee_plant, histogram=TRUE, pch=19)
   
   
   #import plant data
-  plants<-read.csv("plant_traits.csv")
+  plants<-read.csv("data/plant_traits.csv")
   head(plants)
   plants$pol_plot<-plants$pol.unit*plants$tot_flw
   plants$nec_plot<-plants$nectar*plants$tot_flw
