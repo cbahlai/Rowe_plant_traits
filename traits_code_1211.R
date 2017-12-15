@@ -1757,6 +1757,10 @@ chart.Correlation(bee_plant, histogram=TRUE, pch=19)
   head(plants_bees)
   colnames(plants_bees)
   
+  #look at observations with fewer bees- we need to remove ones that didn't capture much
+  
+  plants_bees<-plants_bees[which(rowSums(plants_bees[12:42])>5),]
+  
   #look at genus sums- will remove genera with very low numbers
   colSums(plants_bees[12:42])
   
@@ -1788,8 +1792,19 @@ chart.Correlation(bee_plant, histogram=TRUE, pch=19)
   bee_matrix$Coelioxys<-NULL
   bee_matrix$Protandrena<-NULL
   bee_matrix$Triepeolus<-NULL
-  
-  
+  # three to 25
+  bee_matrix$Anthophora<-NULL
+  bee_matrix$Colletes<-NULL
+  bee_matrix$Eucera<-NULL
+  bee_matrix$Nomada<-NULL
+  bee_matrix$`Psuedo panurgus`<-NULL
+  bee_matrix$Heriades<-NULL
+  bee_matrix$Hoplitis<-NULL
+  bee_matrix$Osmia<-NULL
+  bee_matrix$Perdita<-NULL
+  bee_matrix$`Sphecodes `<-NULL
+  bee_matrix$Xylocopa<-NULL
+  bee_matrix$Anthidium<-NULL
   
   plant_data<- plants_bees[1:11]
   colnames(plant_data)
