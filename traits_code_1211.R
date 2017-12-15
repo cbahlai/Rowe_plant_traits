@@ -1819,7 +1819,7 @@ chart.Correlation(bee_plant, histogram=TRUE, pch=19)
   #plant_data$Pollen_Plot<-NULL
   
   ##PCA #I like this the most
-  ord<-rda(bee_matrix, distance="bray", autotransform=T, scale=T)
+  ord<-metaMDS(bee_matrix, distance="bray", autotransform=F, scale=T)
   ordiplot(ord, display="species", type= "t")
   summary(ord)
   
